@@ -3,28 +3,17 @@
     <% if (post.link || post.title){ %>
       <header class="article-header">
         <%- partial('post/title', {class_name: 'article-title'}) %>
-<!-- <br />
+<br />
 <span class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
 <span class="icon-smile"></span>
 <span id="busuanzi_container_page_pv" style="color:#999;font-size:16px;">
     阅读: <span id="busuanzi_value_page_pv"></span> &nbsp;&nbsp;
   </span>
-</span> -->
+</span>
         <% if (!post.noDate){ %>
         <%- partial('post/date', {class_name: 'archive-article-date', date_format: null}) %>
         <% } %>
       </header>
-    <% } %>
-    <div class="article-entry" itemprop="articleBody">
-      <% if (post.excerpt && index){ %>
-        <%- post.excerpt %>
-        <% if (theme.excerpt_link) { %>
-          <a class="article-more-a" href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %> >></a>
-        <% } %>
-      <% } else { %>
-        <%- post.content %>
-      <% } %>
-
 
 <!-- 目录内容 -->
 <% if (!index && post.toc){ %>
@@ -56,6 +45,18 @@
 <!-- 目录内容结束 -->
 
 
+    <% } %>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (post.excerpt && index){ %>
+        <%- post.excerpt %>
+        <% if (theme.excerpt_link) { %>
+          <a class="article-more-a" href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %> >></a>
+        <% } %>
+      <% } else { %>
+        <%- post.content %>
+      <% } %>
+
+
 
 <%
   var sUrl = url.replace(/index\.html$/, '');
@@ -63,7 +64,8 @@
 %>
 <% if ((theme.declare_type === 2 || (theme.declare_type === 1 && post.declare)) && !index){ %>
 <div class="declare">
-  <strong>本文作者：</strong>
+  <strong>版权声明：本文为博主原创文章，未经允许不得转载。</strong>
+  <!-- <strong>本文作者：</strong>
   <% if(config.author != undefined){ %>
   <%= config.author%>
   <% }else{%>
@@ -81,7 +83,7 @@
   <% if(theme.licensee_img != undefined){ %>
   <br>
   <a rel="license" href="<%= theme.licensee_url%>"><img alt="知识共享许可协议" style="border-width:0" src="<%= theme.licensee_img%>" /></a>
-  <% } %>
+  <% } %> -->
 </div>
 <% } else {%>
 <div class="declare" hidden="hidden"></div>
